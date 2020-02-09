@@ -1,16 +1,24 @@
 package main
 
 //PoorCreatures construct
-type PoorCreatures struct {
-	sleepingZombieQueue Queu
+type PoorCreature struct {
+	location *GridLocation
+	isZombie bool
+}
+
+//NewPoorCreature creates a new poor creature
+func NewPoorCreature(x int, y int) *PoorCreature{
+	return &PoorCreature{
+		location: NewGridLocation(x, y),
+	}
 }
 
 //GetZombiefied - what happens when a zombie eats a poor creature
-func(pc *PoorCreatures) GetZombiefied() {
-	
+func(pc *PoorCreature) GetZombiefied() {
+	pc.isZombie=true
 }
 
 //GoToQueue go in queue
-func(pc *PoorCreatures) GoToQueue(){
-
+func(pc *PoorCreature) GoToQueue(queue *SleepingZombieQueue){
+	queue.AddToQueue(pc)
 }

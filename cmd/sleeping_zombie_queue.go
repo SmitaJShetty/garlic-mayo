@@ -2,22 +2,22 @@ package main
 
 //SleepingZombieQueue construct zombieS
 type SleepingZombieQueue struct {
-	ZombieQueue []Zombie
+	ZombieQueue []*Zombie
 }
 
 //NewSleepingZombieQueue returns a new sleeping zombie queue
 func NewSleepingZombieQueue() *SleepingZombieQueue {
 	return &SleepingZombieQueue{
-		ZombieQueue: []Zombie,
+		
 	}
 }
 
-//AddToQueue adds zombie to queue
-func(sz *SleepingZombieQueue) AddToQueue(zombie *Zombie)error{
-	
+//Enqueue adds zombie to queue
+func(sz *SleepingZombieQueue) Enqueue(zombie *Zombie)error{
+		return nil
 }
 
-//TakeFromQueue takes out of sleeping zombie queue
-func (sz *SleepingZombieQueue) TakeFromQueue() (*Zombie, error){
-
+//Dequeue takes out of sleeping zombie queue
+func (sz *SleepingZombieQueue) Dequeue() (*Zombie, error){
+	return nil, nil
 }

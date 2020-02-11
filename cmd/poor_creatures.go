@@ -7,18 +7,15 @@ type PoorCreature struct {
 }
 
 //NewPoorCreature creates a new poor creature
-func NewPoorCreature(x int, y int) *PoorCreature{
+func NewPoorCreature(x int, y int) *PoorCreature {
 	return &PoorCreature{
 		location: NewGridLocation(x, y),
 	}
 }
 
 //GetZombiefied - what happens when a zombie eats a poor creature
-func(pc *PoorCreature) GetZombiefied() {
+func(pc *PoorCreature) GetZombiefied(queue *SleepingZombieQueue, g *Grid) error {
 	pc.isZombie=true
-}
-
-//GoToQueue go in queue
-func(pc *PoorCreature) GoToQueue(queue *SleepingZombieQueue){
-	queue.AddToQueue(pc)
+	err:=queue.Enqueue(NewZombie(pc.location.X, pc.location.Y, g))
+	return err
 }

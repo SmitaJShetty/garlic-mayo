@@ -21,7 +21,6 @@ func Start(listenAddress string) {
 		}
 		fmt.Println("Listening on port:", listenAddress)
 	}()
-
 }
 
 // addRoutes adds routes

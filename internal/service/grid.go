@@ -1,6 +1,9 @@
 package service
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 //Limit bounds
 type Limit int
@@ -39,6 +42,8 @@ func (g *Grid) Start(mItinary string, initiatorZombie *Zombie) (int, error) {
 		if zErr != nil {
 			return 0, zErr
 		}
+
+		log.Println("initiatorZombie:", initiatorZombie.position)
 
 		//traverse zombiepath for as long as there are zombies in the queue
 		traverseErr := zombie.TraverseZombiePath(mItinary, zombieQueue)

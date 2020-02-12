@@ -2,8 +2,8 @@ package service
 
 //PoorCreature construct
 type PoorCreature struct {
-	location *GridLocation
-	isZombie bool
+	location *GridLocation `json:"location"`
+	isZombie bool `json:"is_zombie"`
 }
 
 //NewPoorCreature creates a new poor creature

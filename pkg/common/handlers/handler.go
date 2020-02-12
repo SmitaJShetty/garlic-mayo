@@ -22,6 +22,12 @@ func (h *Handler) WakeupZombieHandler(w http.ResponseWriter, req *http.Request) 
 		return
 	}
 
+	validateErr:= request.Validate()
+	if validateErr!=nil {
+		log.Println(validateErr)
+		return
+	}
+
 	score, hErr := h.svc.WakeupZombieWalker(&request)
 	if hErr != nil {
 		log.Println(hErr)

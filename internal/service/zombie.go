@@ -55,6 +55,7 @@ func (z *Zombie) TraverseZombiePath(mItinary string, zombieQueue *SleepingZombie
 		return fmt.Errorf("no poor creatures")
 	}
 
+	log.Println("pcs:", z.grid.PoorCreatures[1])
 	for _, pc := range z.grid.PoorCreatures {
 		if !pc.isZombie {
 			_, ok := latestItinary[markerStr(pc.location.X, pc.location.Y)]

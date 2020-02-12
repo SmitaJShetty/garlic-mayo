@@ -1,28 +1,20 @@
 package main
 
-import "log"
+import (
+	"fmt"
+	"log"
+	"os"
+	"strings"
+	"garlic-mayo/pkg/common/router"
+)
 
 func main() {
-	n := 10
-	morbidItinary := "DULRDULRDULR"
-	//creatureLocationList:= getPoorCreatureListFromLocation()
-	creatureLocationList := []*PoorCreature{
-		NewPoorCreature(1, 2),
-		NewPoorCreature(3, 3),
-		NewPoorCreature(4, 4),
-		NewPoorCreature(2, 2),
+	listenAddress := strings.Trim(os.Getenv("APP_LISTENER_ADDR"), " ")
+	if listenAddress == "" {
+		log.Fatal("environment variable APP_LISTENER_ADDR not set")
 	}
 
-	grid := NewGrid(Limit(n), Limit(n), creatureLocationList)
-	zombie := NewZombie(2, 1, grid)
-	startErr := grid.Start(morbidItinary, zombie)
-	if startErr != nil {
-		log.Println("error occurred in start,", startErr)
-	}
-}
-
-//given a set of string tupes, convert to poor creature location on grid
-func getPoorCreatureListFromLocation() ([]*PoorCreature, error) {
-	//todo
-	return nil, nil
+	common.Start(listenAddress)
+	fmt.Println("Server listening on: ", listenAddress)
+	select {}
 }

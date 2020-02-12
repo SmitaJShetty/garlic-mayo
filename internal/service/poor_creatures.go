@@ -1,6 +1,6 @@
-package main
+package service
 
-//PoorCreatures construct
+//PoorCreature construct
 type PoorCreature struct {
 	location *GridLocation
 	isZombie bool
@@ -14,8 +14,8 @@ func NewPoorCreature(x int, y int) *PoorCreature {
 }
 
 //GetZombiefied - what happens when a zombie eats a poor creature
-func(pc *PoorCreature) GetZombiefied(queue *SleepingZombieQueue, g *Grid) error {
-	pc.isZombie=true
-	err:=queue.Enqueue(NewZombie(pc.location.X, pc.location.Y, g))
+func (pc *PoorCreature) GetZombiefied(queue *SleepingZombieQueue, g *Grid) error {
+	pc.isZombie = true
+	err := queue.Enqueue(NewZombie(pc.location.X, pc.location.Y, g))
 	return err
 }

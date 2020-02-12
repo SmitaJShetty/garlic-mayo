@@ -1,4 +1,4 @@
-package main
+package service
 
 //GridLocation construct for grid location
 type GridLocation struct {

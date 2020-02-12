@@ -1,4 +1,4 @@
-package main
+package service
 
 import (
 	"fmt"
@@ -21,9 +21,10 @@ func NewZombie(x, y int, g *Grid) *Zombie {
 }
 
 //NewZombieFromPoorCreature returns a new zombie from poor creature
-func NewZombieFromPoorCreature(pc *PoorCreature) *Zombie {
+func NewZombieFromPoorCreature(pc *PoorCreature, g *Grid) *Zombie {
 	return &Zombie{
 		position: NewGridLocation(pc.location.X, pc.location.Y),
+		grid:     g,
 	}
 }
 
@@ -66,7 +67,6 @@ func (z *Zombie) TraverseZombiePath(mItinary string, zombieQueue *SleepingZombie
 			}
 		}
 	}
-
 	return nil
 }
 

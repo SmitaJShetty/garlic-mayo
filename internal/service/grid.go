@@ -1,4 +1,4 @@
-package main
+package service
 
 import "fmt"
 
@@ -22,30 +22,30 @@ func NewGrid(xLimit Limit, yLimit Limit, pc []*PoorCreature) *Grid {
 }
 
 //Start starting place for all action
-func (g *Grid) Start(mItinary string, initiatorZombie *Zombie) error {
+func (g *Grid) Start(mItinary string, initiatorZombie *Zombie) (int, error) {
 	zombieQueue := NewSleepingZombieQueue()
 	err := zombieQueue.Enqueue(initiatorZombie)
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	if mItinary == "" {
-		return fmt.Errorf("itinary was empty")
+		return 0, fmt.Errorf("itinary was empty")
 	}
 
 	for {
 		//initiate motions for creatures on grid
 		zombie, zErr := zombieQueue.Dequeue()
 		if zErr != nil {
-			return zErr
+			return 0, zErr
 		}
 
 		//traverse zombiepath for as long as there are zombies in the queue
 		traverseErr := zombie.TraverseZombiePath(mItinary, zombieQueue)
 		if traverseErr != nil {
-			return traverseErr
+			return 0, traverseErr
 		}
 	}
-	return nil
 
+	return 100, nil
 }

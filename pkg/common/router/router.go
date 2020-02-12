@@ -11,7 +11,7 @@ import (
 //Start starts router
 func Start(listenAddress string) {
 	r := GetRouter()
-	h := NewHandlers()
+	h := handlers.NewHandlers()
 	addRoutes(r, h)
 
 	go func() {
@@ -25,8 +25,8 @@ func Start(listenAddress string) {
 }
 
 // addRoutes adds routes
-func addRoutes(router *mux.Router, h *Handlers) {
-	router.HandleFunc("/walkthezombie", h.InvalidateCache).Methods("POST")
+func addRoutes(router *mux.Router, h *handlers.Handler) {
+	router.HandleFunc("/walkthezombie", h.WakeupZombieHandler).Methods("POST")
 }
 
 // GetRouter gets router
